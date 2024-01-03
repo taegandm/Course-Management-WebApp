@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <img src="{{ url_for('static', filename='img/sql_logo.png') }}" alt="Logo">
+
+
+<div class="form-container">
+    <h2>Login</h2>
+    <form method="POST" action="/login">
+        <label>Username:</label>
+        <input type="text" name="username" required><br>
+        <label>Password:</label>
+        <input type="password" name="password" required><br>
+        <label>User Type:</label>
+        <input type="radio" name="type" value="0" class="checkmark" required>Admin<br>
+        <input type="radio" name="type" value="1" class="checkmark" checked required>Student<br>
+        <br>
+        <button type="submit" value="Login">Login</button><br>
+    </form>
+</div>
+</body>
+</html>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Edit Student</h1>
+    <div class="form-container">
+        <form method="POST" action="/updateStudent/{{ data[0] }}">
+            <label>Name:</label>
+            <input type="text" name="sname" value="{{ data[1] }}" required><br>
+            <label>Username:</label>
+            <input type="text" name="username" value="{{ data[2] }}" required><br>
+            <label>Email:</label>
+            <input type="email" name="email" value="{{ data[3] }}" required><br>
+            <label>Phone Number:</label>
+            <input type="text" minlength="10" placeholder="9731112222" maxlength="10" name="pnum" value="{{ data[4] }}" required><br>
+            <label>Date of Birth:</label>
+            <input type="date" name="dob" value="{{ data[5] }}" required><br>
+            <label>GPA:</label>
+            <input type="number" placeholder="3.0" min="0" max="4" maxlength="4" step="0.01" name="gpa" value="{{ data[6] }}" required><br>
+            <label>Password:</label>
+            <input type="text" placeholder="password" name="pword" value="{{ data[7] }}" required><br>
+            <button type="submit" value="Update">Update</button>
+        </form>
+    </div>
+</body>
+</html>
+
+

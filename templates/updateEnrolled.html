@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Edit Student</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+</head>
+<body>
+    <h1>Edit Student</h1>
+    <div class="form-container">
+        <form method="POST" action="/updateEnrolled/{{ data[0] }}/{{ data[1] }}">
+            <label>Student ID (SID):</label>
+            <input type="text" name="sid" value="{{ data[0] }}" required><br>
+            <label>Course ID (CID)</label>
+            <input type="text" name="cid" value="{{ data[1] }}" required><br>
+            <label>Grade:</label>
+            <input type="text" name="grade" value="{{ data[2] }}" required><br>
+            <button type="submit" value="Update">Update</button>
+        </form>
+    </div>
+</body>
+</html>
+
+

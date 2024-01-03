@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Login</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <img src="{{ url_for('static', filename='img/sql_logo.png') }}" alt="Logo">
+
+
+<div class="form-container">
+    <h2>{{ errorType }}</h2>
+    <form action="/{{ path }}">
+        <label>{{ message }}</label>
+        <br>
+        <button type="submit">{{ redirectLocation }}</button><br>
+    </form>
+</div>
+</body>
+</html>

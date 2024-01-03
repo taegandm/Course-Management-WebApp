@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Home</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/styles.css') }}">
+
+</head>
+<body>
+    <img src="{{ url_for('static', filename='img/sql_logo.png') }}" alt="Logo">
+
+
+<h1>Student Records</h1>
+    <table border="1" class="student-table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Username</th>
+                <th>Email</th>
+                <th>Phone Number</th>
+                <th>Date of Birth</th>
+                <th>GPA</th>
+                <th>Password</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in students %}
+            <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1] }}</td>
+                <td>{{ record[2] }}</td>
+                <td>{{ record[3] }}</td>
+                <td>{{ record[4] }}</td>
+                <td>{{ record[5] }}</td>
+                <td>{{ record[6] }}</td>
+                <td>{{ record[7] }}</td>
+                <td>
+                    <a href="{{ url_for('updateStudent', sid=record[0]) }}">Update</a>
+                    <a href="{{ url_for('delete', type='student', id=record[0]) }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+<div class="form-container">
+    <h2>Add Student</h2>
+    <form method="POST" action="/addStudent">
+        <label>Name:</label>
+        <input type="text" placeholder="John Doe" name="sname" required><br>
+        <label>Username:</label>
+        <input type="text" placeholder="doej1" name="username" required><br>
+        <label>Email:</label>
+        <input type="email" placeholder="doej1@montclair.edu" name="email" required><br>
+        <label>Phone Number:</label>
+        <input type="text" minlength="10" placeholder="9731112222" maxlength="10" name="pnum" required><br>
+        <label>Date of Birth:</label>
+        <input type="date" name="dob" required><br>
+        <label>GPA:</label>
+        <input type="number" placeholder="3.0" min="0" max="4" maxlength="4" step="0.01" name="gpa" required><br>
+        <label>Password:</label>
+        <input type="text" placeholder="password" name="pword" required><br>
+        <button type="submit" value="Add">Add</button><br>
+    </form>
+</div>
+    <br>
+    <br>
+<h1>Course Records</h1>
+    <table border="1" class="student-table">
+        <thead>
+            <tr>
+                <th>CID</th>
+                <th>Course Name</th>
+                <th>Description</th>
+                <th>Credits</th>
+                <th>Capacity</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in courses %}
+            <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1] }}</td>
+                <td>{{ record[2] }}</td>
+                <td>{{ record[3] }}</td>
+                <td>{{ record[4] }}</td>
+                <td>
+                    <a href="{{ url_for('updateCourse', cid=record[0]) }}">Update</a>
+                    <a href="{{ url_for('delete', type='course', id=record[0]) }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+<div class="form-container">
+    <h2>Add Course</h2>
+    <form method="POST" action="/addCourse">
+        <label>Course Name:</label>
+        <input type="text" placeholder="Python Programming" name="cname" required><br>
+        <label>Description:</label>
+        <input type="text" placeholder="Description..." name="description" required><br>
+        <label>Credits:</label>
+        <input type="number" placeholder="3.0" min="1" name="credits" required><br>
+        <label>Capacity:</label>
+        <input type="number" placeholder="20" min="1" max="25" name="capacity" required><br>
+        <button type="submit" value="addCourse">Add</button><br>
+    </form>
+</div>
+    <br>
+    <br>
+<h1>Enrolled Records</h1>
+    <table border="1" class="student-table">
+        <thead>
+            <tr>
+                <th>Student ID (SID)</th>
+                <th>Course ID (CID)</th>
+                <th>Grade</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for record in enrolled %}
+            <tr>
+                <td>{{ record[0] }}</td>
+                <td>{{ record[1] }}</td>
+                <td>{{ record[2] }}</td>
+                <td>
+                    <a href="{{ url_for('updateEnrolled', sid=record[0], cid=record[1], grade=record[2]) }}">Update</a>
+                    <a href="{{ url_for('delete', type=record[0], id=record[1]) }}">Delete</a>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <br>
+<div class="form-container">
+    <h2>Enroll Student</h2>
+    <form method="POST" action="/enrollStudent">
+        <label>Student ID:</label>
+        <input type="number" placeholder="1" min="1" name="sid" required><br>
+        <label>Course ID:</label>
+        <input type="number" placeholder="1" min="1" name="cid" required><br>
+        <label>Grade:</label>
+        <input type="text" maxlength="2" placeholder="B+" name="grade" required><br>
+        <button type="submit" value="enrollStudent">Add</button><br>
+    </form>
+</div>
+</body>
+</html>
